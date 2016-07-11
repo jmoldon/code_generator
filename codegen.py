@@ -1,19 +1,19 @@
-import random, string, sys
+import random, string
+import sys
 
-def generate_code(a):
+def generate_code(a, N = 10):
     b = [ord(ai.lower()) for ai in a]
     
-    # Continued fractions to generated biyective R^N -> R
+    # Continued fractions to generate biyective R^N -> R
     c = 0
     for bi in b:
         c =+ (1./(bi+c))
     
     seed = int(c*1e15)
-    
     random.seed(seed)
-    N = 10
     return ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(N))
-    
+
+
 if __name__ == "__main__":
     try:
         input_code = sys.argv[1]
